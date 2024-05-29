@@ -54,7 +54,7 @@ namespace IlQuadrifoglioAPI
             var dbConnection = Environment.GetEnvironmentVariable("DefaultConnection") ?? builder.Configuration["ConnectionStrings:DefaultConnection"];
             // Add DbContext
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(dbConnection));
 
             // Add authorization services
             builder.Services.AddAuthorization();
