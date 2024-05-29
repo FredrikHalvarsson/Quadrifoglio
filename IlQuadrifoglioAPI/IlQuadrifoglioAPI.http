@@ -1,0 +1,6 @@
+@IlQuadrifoglioAPI_HostAddress = http://localhost:5033
+
+GET {{IlQuadrifoglioAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

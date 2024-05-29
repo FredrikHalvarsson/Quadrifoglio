@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuadrifoglioAPI", "QuadrifoglioAPI\QuadrifoglioAPI.csproj", "{415691F6-25D6-4870-B048-F4E262FDEC66}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IlQuadrifoglio", "IlQuadrifoglio\IlQuadrifoglio.csproj", "{5823EED3-15B9-4DD4-B081-5D5FEFAFDF6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IlQuadrifoglioAPI", "IlQuadrifoglioAPI\IlQuadrifoglioAPI.csproj", "{2E01AB5B-332B-42D7-B9A9-70CCE3EB0FF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +21,10 @@ Global
 		{5823EED3-15B9-4DD4-B081-5D5FEFAFDF6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5823EED3-15B9-4DD4-B081-5D5FEFAFDF6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5823EED3-15B9-4DD4-B081-5D5FEFAFDF6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E01AB5B-332B-42D7-B9A9-70CCE3EB0FF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E01AB5B-332B-42D7-B9A9-70CCE3EB0FF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E01AB5B-332B-42D7-B9A9-70CCE3EB0FF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E01AB5B-332B-42D7-B9A9-70CCE3EB0FF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
