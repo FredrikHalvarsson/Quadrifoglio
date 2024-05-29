@@ -1,4 +1,7 @@
 # Quadrifoglio
+###
+#### A Pizza Delivery app for a small-scale high-end Italian restaurant
+###
 ### Original repositories:
 #### https://github.com/FredrikHalvarsson/IlQuadrifoglio
 #### https://github.com/FredrikHalvarsson/QuadrifoglioAPI
