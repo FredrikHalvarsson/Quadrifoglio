@@ -1,4 +1,7 @@
 # Quadrifoglio
+### Original repositories:
+#### https://github.com/FredrikHalvarsson/IlQuadrifoglio
+#### https://github.com/FredrikHalvarsson/QuadrifoglioAPI
 
 ## Contributors:
 #### [@FredrikHalvarsson](https://github.com/FredrikHalvarsson)
