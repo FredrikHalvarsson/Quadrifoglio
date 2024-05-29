@@ -1,11 +1,11 @@
 # Quadrifoglio
 
 ## Contributors:
-[@FredrikHalvarsson](https://github.com/FredrikHalvarsson)
-[@LindEmma](https://github.com/LindEmma)
-[@jmikaelsson](https://github.com/jmikaelsson)
-[@m-lovqvist](https://github.com/m-lovqvist)
-[@Glind99](https://github.com/Glind99)
+#### [@FredrikHalvarsson](https://github.com/FredrikHalvarsson)
+#### [@LindEmma](https://github.com/LindEmma)
+#### [@jmikaelsson](https://github.com/jmikaelsson)
+#### [@m-lovqvist](https://github.com/m-lovqvist)
+#### [@Glind99](https://github.com/Glind99)
 
 ## Links:
 #### [API](https://quadrifoglioapi.azurewebsites.net/swagger/)
