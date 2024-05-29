@@ -1,0 +1,87 @@
+﻿@* @model IEnumerable<IlQuadrifoglio.Models.Order> *@
+    @model IlQuadrifoglio.ViewModels.OrderViewModel
+
+<body class="body-order">
+
+    <div class="row mt-5 mb-2">
+        <div class="col-12 text-center">
+            <h1>Kassa</h1>
+            <div class="card">
+                <div class="card-body">
+                    <h2>Dina varor</h2>
+
+                    @if (Model.Order != null)
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Produktnamn</th>
+                                    <th>Kvantitet</th>
+                                    <th>á-pris</th>
+                                    <th>Åtgärder</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Order.OrderProducts != null && Model.Order.OrderProducts.Any())
+                                {
+                                    @foreach (var item in Model.Order.OrderProducts)
+                                    {
+                                        <tr>
+                                            <td>@item.Product.ProductName</td>
+                                            <td>
+                                                <form asp-action="Edit" asp-controller="OrderProducts" asp-route-id="@item.OrderProductId" method="post" class="d-inline">
+                                                    <input type="hidden" name="orderProductId" value="@item.OrderProductId" />
+                                                    <input type="hidden" name="fkProductId" value="@item.FkProductId" />
+                                                    <input type="hidden" name="fkOrderId" value="@item.FkOrderId" />
+                                                    <input type="number" id="quantity" name="quantity" min="1" max="100" step="1" value="@item.Quantity" onchange="this.form.submit()" />
+                                                </form>
+                                            </td>
+                                            <td>@item.Product.Price.ToString("C")</td>
+                                            <td>
+                                                <form asp-action="DeleteConfirmed" asp-route-id="@item.OrderProductId" asp-controller="OrderProducts" method="post" class="d-inline" onsubmit="return confirm('Är du säker på att du vill radera @item.Product.ProductName från varukorgen?')">
+                                                    <button type="submit" class="btn btn-outline-danger" data-toggle="tooltip" title="Radera"><i class="bi bi-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }}
+                            </tbody>
+                        </table>
+                        <div class="total">
+                            <h3>Total: @(Model.Order.OrderProducts?.Sum(item => (item.Product?.Price ?? 0) * item.Quantity).ToString("C"))</h3>
+                        </div> 
+                    }
+                    else
+                    {
+                        <p>Din kundvagn är tom.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-2">
+        <div class="col-12 text-center">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Välj leveransadress</h2>
+
+                    <div id="partial-container"></div>
+
+                    <!-- Include jQuery for AJAX requests -->
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <script>var userName = '@Html.Raw(Model.UserName)';</script>
+                    <!-- JavaScript code -->
+                    <script src="~/js/location-script.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="mt-5 mb-5">
+    <form asp-action="SendOrder" asp-controller="Order" asp-route-id="@Model.Order.OrderId" method="post" class="d-inline">
+        <input type="hidden" name="OrderId" value="@Model.Order.OrderId" />
+        <input type="hidden" name="UserId" value="@Model.Order.FkCustomerId" />
+        <button type="submit" class="btn btn-three mb-5">Beställ</button>
+    </form>
+    </div>
+</body>

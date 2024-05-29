@@ -1,0 +1,17 @@
+﻿@model IlQuadrifoglio.ViewModels.IndexViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location Index</title>
+</head>
+<body>
+    <div id="partial-container"></div>
+
+    <!-- Include jQuery for AJAX requests -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>var userName = '@Html.Raw(Model.UserName)';</script>
+    <!-- JavaScript code -->
+    <script src="~/js/location-script.js"></script>
+</body>
+</html>

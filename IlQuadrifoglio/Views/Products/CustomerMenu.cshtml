@@ -1,0 +1,209 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Pizza Menu";
+}
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col p-0">
+            <section class="jumbotron text-center text-white mb-0" style="background-image: url('/Images/pexels-daria-133959593-10260559.jpg'); background-size: cover;">
+                <div class="container textContainer">
+                    @if (User.IsInRole("admin"))
+                    {
+                        <h1 class="jumbotron-heading">Redigera meny</h1>
+                        <a asp-action="Create" class="btn col-md-5 text-center w-auto mt-2">Lägg till produkter</a>
+                    }
+                    else
+                    {
+                        <h1 class="jumbotron-heading">Vår meny</h1>
+                    }
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <p>
+                            <a class="btn" asp-area="" asp-controller="Account" asp-action="Login">Logga in för att göra en beställning</a>
+                        </p>
+                    }
+                </div>
+            </section>
+        </div>
+    </div>
+    <br />
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    <h1 class="text-center">Pizza</h1>
+    @if (Model.Any(p => p.ProductType == IlQuadrifoglio.Models.Type.Pizza))
+    {
+        <div class="container bg-white p-0 mb-4 rounded menu-cards">
+            @{
+                var pizzaProducts = Model.Where(p => p.ProductType == IlQuadrifoglio.Models.Type.Pizza).ToList();
+                var count = 0;
+            }
+            @foreach (var product in pizzaProducts)
+            {
+                <div class="container row">
+                    <div class="card mb-2 mt-2 box-shadow @(count == pizzaProducts.Count() - 1 ? "" : "border-bottom")">
+                        <div class="card-body d-flex justify-content-between">
+                            <div>
+                                <h5 class="card-title text-uppercase">@product.ProductName</h5>
+                                <h5 class="text-muted">@product.Price kr</h5>
+                                <p class="card-text">@product.ProductDescription</p>
+                            </div>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <div class="d-flex flex-column align-items-start">
+                                    <a asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-outline-primary mb-2" data-toggle="tooltip" title="Redigera"><i class="bi bi-pencil"></i></a>
+                                    <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-outline-info mb-2" data-toggle="tooltip" title="Information"><i class="bi bi-info-circle"></i></a>
+                                    <form asp-action="Delete" asp-route-id="@product.ProductId" method="post" class="d-inline" onsubmit="return confirm('Är du säker på att du vill radera @product.ProductName?')">
+                                        <button type="submit" class="btn btn-outline-danger" data-toggle="tooltip" title="Radera"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                </div>
+                            }
+                            @if (User.IsInRole("customer"))
+                            {
+                                <div class="d-flex flex-column align-items-end">
+                                    <form id="add-to-cart-form" asp-action="Create" asp-controller="OrderProducts" asp-route-id="@product.ProductId" method="post" class="d-inline">
+
+                                        <input type="hidden" name="productId" value="@product.ProductId" />
+                                        <div class="mb-2">
+                                            <input type="number" id="quantity" name="quantity" min="1" max="100" step="1" value="1" />
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-primary" data-toggle="tooltip" title="Lägg till i varukorgen">
+                                            <i class="bi bi-cart-plus"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                count++;
+            }
+        </div>
+    }
+    else
+    {
+        <p class ="text-center">Det finns inga pizzor.</p>
+    }
+
+    <h1 class="text-center">Tillbehör</h1>
+    @if (Model.Any(p => p.ProductType == IlQuadrifoglio.Models.Type.Sides))
+    {
+        <div class="container bg-white p-0 mb-4 rounded menu-cards">
+            @{
+                var sideProducts = Model.Where(p => p.ProductType == IlQuadrifoglio.Models.Type.Sides).ToList();
+                var count = 0;
+            }
+            @foreach (var product in sideProducts)
+            {
+                <div class="container row">
+                    <div class="card mb-2 mt-2 box-shadow @(count == sideProducts.Count() - 1 ? "" : "border-bottom")">
+                        <div class="card-body d-flex justify-content-between">
+                            <div>
+                                <h5 class="card-title text-uppercase">@product.ProductName</h5>
+                                <h5 class="text-muted">@product.Price kr</h5>
+                                <p class="card-text">@product.ProductDescription</p>
+                            </div>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <div class="d-flex flex-column align-items-start">
+                                    <a asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-outline-primary mb-2" data-toggle="tooltip" title="Redigera"><i class="bi bi-pencil"></i></a>
+                                    <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-outline-info mb-2" data-toggle="tooltip" title="Information"><i class="bi bi-info-circle"></i></a>
+                                    <form asp-action="Delete" asp-route-id="@product.ProductId" method="post" class="d-inline" onsubmit="return confirm('Är du säker på att du vill radera @product.ProductName?')">
+                                        <button type="submit" class="btn btn-outline-danger" data-toggle="tooltip" title="Radera"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                </div>
+                            }
+                            @if (User.IsInRole("customer"))
+                            {
+                                <div class="d-flex flex-column align-items-end">
+                                    <form id="add-to-cart-form" asp-action="Create" asp-controller="OrderProducts" asp-route-id="@product.ProductId" method="post" class="d-inline">
+
+                                        <input type="hidden" name="productId" value="@product.ProductId" />
+                                        <div class="mb-2">
+                                            <input type="number" id="quantity" name="quantity" min="1" max="100" step="1" value="1" />
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-primary" data-toggle="tooltip" title="Lägg till i varukorgen">
+                                            <i class="bi bi-cart-plus"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                count++;
+            }
+        </div>
+
+    }
+    else
+    {
+        <p class="text-center">Det finns inga tillbehör.</p>
+    }
+
+    <h1 class="text-center mt-6">Dryck</h1>
+    @if (Model.Any(p => p.ProductType == IlQuadrifoglio.Models.Type.Beverage))
+    {
+        <div class="container bg-white p-0 mb-4 rounded menu-cards">
+            @{
+                var beverageProducts = Model.Where(p => p.ProductType == IlQuadrifoglio.Models.Type.Beverage).ToList();
+                var count = 0;
+            }
+            @foreach (var product in beverageProducts)
+            {
+                <div class="container row">
+                    <div class="card mb-2 mt-2 box-shadow @(count == beverageProducts.Count() - 1 ? "" : "border-bottom")">
+                        <div class="card-body d-flex justify-content-between">
+                            <div>
+                                <h5 class="card-title text-uppercase">@product.ProductName</h5>
+                                <h5 class="text-muted">@product.Price kr</h5>
+                                <p class="card-text">@product.ProductDescription</p>
+                            </div>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <div class="d-flex flex-column align-items-start">
+                                    <a asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-outline-primary mb-2" data-toggle="tooltip" title="Redigera"><i class="bi bi-pencil"></i></a>
+                                    <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-outline-info mb-2" data-toggle="tooltip" title="Information"><i class="bi bi-info-circle"></i></a>
+                                    <form asp-action="Delete" asp-route-id="@product.ProductId" method="post" class="d-inline" onsubmit="return confirm('Är du säker på att du vill radera @product.ProductName?')">
+                                        <button type="submit" class="btn btn-outline-danger" data-toggle="tooltip" title="Radera"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                </div>
+                            }
+                            @if (User.IsInRole("customer"))
+                            {
+                                <div class="d-flex flex-column align-items-end">
+                                    <form id="add-to-cart-form" asp-action="Create" asp-controller="OrderProducts" asp-route-id="@product.ProductId" method="post" class="d-inline">
+
+                                        <input type="hidden" name="productId" value="@product.ProductId" />
+                                        <div class="mb-2">
+                                            <input type="number" id="quantity" name="quantity" min="1" max="100" step="1" value="1" />
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-primary" data-toggle="tooltip" title="Lägg till i varukorgen">
+                                            <i class="bi bi-cart-plus"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                count++;
+            }
+        </div>
+
+    }
+    else
+    {
+        <p class="text-center">Det finns inga drycker.</p>
+    }
+
+</div>
+
+@* Till kundkorgen-knapp *@
+</>

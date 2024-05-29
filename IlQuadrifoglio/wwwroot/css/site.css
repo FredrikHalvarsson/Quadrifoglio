@@ -1,0 +1,184 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+/* Base size for the icons */
+.user-icon, .cart-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .user-icon, .cart-icon {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .user-icon, .cart-icon {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .user-icon, .cart-icon {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: rgb(177, 186, 180, 25%);
+}
+
+.nav-link {
+    color: black; 
+}
+
+
+
+/* För rubriker */
+h1, h2, h3{
+    font-family: "Big Shoulders Inline Display", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+}
+
+/* För textstycken */
+h4, h5, p {
+    font-family: "Big Shoulders Text", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+h6 {
+    font-family: "Big Shoulders Text", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+    
+
+/* HOME PAGE */
+.imgContainer {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: auto;
+    opacity: .7;
+}
+
+.textContainer {
+    background-color: rgba(0, 0, 0, 0);
+    padding: 2rem;
+    max-width: 100%;
+    text-align: center;
+    color: #fff;
+}
+.textContainer h1{
+    font-size: 70px;
+    padding-bottom: 1rem;
+}
+    .textContainer h5 {
+        font-size: 20px;
+        padding-bottom: 1rem;
+    }
+
+.card-img-left {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+.jumbotron {
+    background-color: rgba(0, 0, 0, 0);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: auto;
+    opacity: .9
+}
+.company-history {
+    background-color: rgb(177, 186, 180, 25%)
+}
+.image-container {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.city-color{
+    color: #CCBA78;
+}
+
+/*ORDER VIEW*/
+
+.body-order {
+    background-color: rgb(177, 186, 180, 25%);
+}
+
+    .body-order .card {
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Skugga */
+        margin: 1rem;
+    }
+
+body-order .card-body {
+    margin: 2rem;
+}
+
+.body-order .card-body h2 {
+    text-align: left;
+}
+
+/* Knappar */
+button, .btn {
+    transition: all .5s ease;
+    color: #CCBA78;
+    border: 3px solid #CCBA78;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    font-size: 20px;
+    background-color: transparent;
+    padding: 15px;
+    outline: none;
+    border-radius: 4px;
+    box-shadow: 1px 1px 15px rgb(155, 155, 155, 0,75);
+}
+
+    button:hover, .btn:hover {
+        color: #FFF;
+        background-color: #CCBA78;
+    }
+
+
+/*Menu*/
+.card{
+    border: none;
+}
+.menu-cards{
+    width: 90%;
+    max-width: 700px;
+}
+
